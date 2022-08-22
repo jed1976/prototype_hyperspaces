@@ -1,0 +1,23 @@
+/* Icon */
+[data-component="accordion"] [data-component="icon"] {
+  fill: grey;
+  height: 24px;
+  width: 24px;
+}
+[data-component="accordion"] [data-component="icon"]:hover {
+  fill: darkgrey;
+}
+[data-component="accordion"][data-state="expanded"] [data-component="icon"] {
+  transform: rotate(180deg);
+}
+
+/* Trigger */
+[data-component="accordion"] [data-target="trigger"] {
+  background: #ccc;
+}
+[data-component="accordion"] [data-target="trigger"]:focus {
+  outline: 1px solid darkgrey;
+}
+[data-component="accordion"] [data-target="trigger"]:hover {
+  background: #eee;
+}

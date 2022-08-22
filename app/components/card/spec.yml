@@ -1,0 +1,43 @@
+id: card
+props:
+  description:
+    - string
+    - Card description
+  image:
+    - string
+    - data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=
+  link:
+    - string
+    - /
+  link-text:
+    - string
+    - Card link text
+  title:
+    - string
+    - Card title
+template:
+  - element: div
+    styles:
+      border: 1px solid red
+      :hover .image:
+        transform: scale(1.1)
+    content:
+      - component: image
+        props:
+          src: ${props.image}
+        styles:
+          "& :hover":
+            opacity: .9
+      - element: slot
+        attributes:
+          name: image
+      - element: slot
+        attributes:
+          name: title
+      - element: slot
+        attributes:
+          name: text
+      - element: slot
+        attributes:
+          name: link
+

@@ -1,0 +1,30 @@
+id: dropdown
+props:
+  data:
+    - array
+    - []
+  id:
+    - string
+  label:
+    - string
+template:
+  - element: ul
+    attribute:
+      aria-label: ${props.label}
+      data-controller: dropdown
+      data-event: dropdown.toggle@window->dropdown.toggle keydown->dropdown.keydown click@document->dropdown.handleOutsideClick
+      hidden: true
+      id: ${props.id}Dropdown
+      role: menu
+    collection:
+      keypath: ${props.data}
+      template:
+        element: li
+        attribute:
+          role: menuitem
+        content:
+          - element: button
+            attribute:
+              type: button
+            content:
+              - ${name}

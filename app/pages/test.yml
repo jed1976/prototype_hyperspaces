@@ -1,0 +1,22 @@
+component: page
+props:
+  description: Home page
+  title: Home
+  url: /
+slots:
+  content:
+    - element: h1
+      content: ${project.name}
+    - element: p
+      attributes:
+        hidden:
+          '<': [1, 2]
+      content: ${project.description}
+    - element: ul
+      collection:
+        keypath: data.users
+        template:
+          - element: li
+            content: ${item.name}
+    - element: p
+      content: ${Object.keys(data.users).length} users

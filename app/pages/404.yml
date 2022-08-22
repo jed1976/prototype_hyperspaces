@@ -1,0 +1,10 @@
+component: page
+props:
+  description: The HTTP 404 Not Found client error response code indicates that the server can't find the requested resource.
+  title: 404 Not Found
+slots:
+  content:
+    - element: h1
+      content: ${props.title}
+    - element: p
+      content: ${props.description}

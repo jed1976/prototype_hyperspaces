@@ -1,0 +1,8 @@
+addElement:
+  - name: Add child element
+  - name: Add sibling
+elementOptions:
+  - name: Edit
+  - name: Delete
+  - name: Move up
+  - name: Move down

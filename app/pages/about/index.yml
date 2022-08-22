@@ -1,0 +1,10 @@
+component: page
+props:
+  description: About us
+  title: About
+  url: /
+slots:
+  content:
+    - element: h1
+      content:
+        - About Us

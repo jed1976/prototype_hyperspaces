@@ -1,0 +1,179 @@
+id: treegrid
+props:
+  label:
+    - string
+template:
+  - element: div
+    attributes:
+      aria-label: ${props.label}
+      class: hs-treegrid
+      data-controller: elementsList treegrid
+      data-event: treegrid.primaryEvent->elementsList.editElement keydown->treegrid.keydown focusin->treegrid.focusin
+      role: treegrid
+    content:
+      - element: div
+        attributes:
+          class: hs-elements__body
+        collection:
+          keypath: data.elements
+          template:
+            element: div
+            attributes:
+              aria-expanded:
+                if:
+                  - var: children
+                  - 'false'
+                  - false
+              aria-level: ${item.level}
+              aria-posinset: ${item.position}
+              aria-setsize: ${item.setSize}
+              class: hs-elements__row
+              data-target: treegrid.row
+              hidden:
+                '>':
+                  - var: level
+                  - 1
+              id: ${item.id}
+              role: row
+              tabindex:
+                if:
+                  - ==:
+                    - var: item.___index
+                    - 0
+                  - 0
+                  - -1
+            content:
+              - element: div
+                attributes:
+                  class: hs-elements__cell
+                  role: gridcell
+                content:
+                  - if:
+                    - var: item.children
+                    - element: button
+                      attributes:
+                        class: hs-element__action hs-element__action--expand
+                        data-event: click->treegrid.toggleElementRow
+                        type: button
+                        tabindex: -1
+                      content:
+                        - element: svg
+                          attributes:
+                            aria-hidden: true
+                            class: >-
+                              hs-element__icon
+                              hs-element__icon--collapsed
+                            height: 24
+                            viewBox: 0 0 24 24
+                            width: 24
+                            xmlns: http://www.w3.org/2000/svg
+                          content:
+                            - element: path
+                              attributes:
+                                d: M10 8v8l6-4-6-4z
+                        - element: svg
+                          attributes:
+                            aria-hidden: true
+                            class: >-
+                              hs-element__icon
+                              hs-element__icon--expanded
+                            height: 24
+                            viewBox: 0 0 24 24
+                            width: 24
+                            xmlns: http://www.w3.org/2000/svg
+                          content:
+                            - element: path
+                              attributes:
+                                d: M16 10H8l4 6 4-6z
+                        - element: span
+                          attributes:
+                            class: visually-hidden
+                          content:
+                            - Expand
+              - element: div
+                attributes:
+                  class: hs-elements__cell hs-elements__cell--edit
+                  role: gridcell
+                content:
+                  - element: button
+                    attributes:
+                      class: hs-element__action hs-element__action--edit
+                      data-event: click->elementsList.editElement
+                      data-id: ${item.id}
+                      type: button
+                      tabindex: -1
+                    content:
+                      - element: span
+                        attributes:
+                          class: visually-hidden
+                        content:
+                          - Edit
+                      - ${item.name}
+              - element: div
+                attributes:
+                  class: hs-elements__cell hs-elements__cell--options
+                  role: gridcell
+                content:
+                  - element: button
+                    attributes:
+                      aria-controls: optionsDropdown
+                      aria-expanded: false
+                      aria-haspopup: true
+                      class: hs-element__action hs-element__action--options
+                      data-event: click->elementsList.showOptionsDropdown
+                      id: optionsTrigger${item.___index}
+                      type: button
+                      tabindex: -1
+                    content:
+                      - element: svg
+                        attributes:
+                          aria-hidden: true
+                          class: hs-element__icon
+                          height: 24
+                          viewBox: 0 0 24 24
+                          width: 24
+                          xmlns: http://www.w3.org/2000/svg
+                        content:
+                          - element: path
+                            attributes:
+                              d: >-
+                                M7 11h2v2H7v-2zM11 11h2v2h-2v-2zM15
+                                11h2v2h-2v-2z
+                      - element: span
+                        attributes:
+                          class: visually-hidden
+                        content:
+                          - View options
+              - element: div
+                attributes:
+                  class: hs-elements__cell
+                  role: gridcell
+                content:
+                  - element: button
+                    attributes:
+                      aria-controls: addElementDropdown
+                      aria-expanded: false
+                      aria-haspopup: true
+                      class: hs-element__action hs-element__action--add
+                      data-event: click->elementsList.showAddOptionsDropdown
+                      id: addOptionsTrigger${item.___index}
+                      type: button
+                      tabindex: -1
+                    content:
+                      - element: svg
+                        attributes:
+                          aria-hidden: true
+                          class: hs-element__icon
+                          height: 24
+                          viewBox: 0 0 24 24
+                          width: 24
+                          xmlns: http://www.w3.org/2000/svg
+                        content:
+                          - element: path
+                            attributes:
+                              d: M11 13v5h2v-5h5v-2h-5V6h-2v5H6v2h5z
+                      - element: span
+                        attributes:
+                          class: visually-hidden
+                        content:
+                          - Add element

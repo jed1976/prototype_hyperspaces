@@ -1,0 +1,4 @@
+{
+  "src/**/*.{js,jsx,json}": ["eslint --fix", "git add"],
+  "(README|CONTRIBUTING).md": ["doctoc --title '**Table of Contents**'", "git add"]
+}

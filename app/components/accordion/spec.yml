@@ -1,0 +1,66 @@
+id: accordion
+template:
+  element: div
+  attributes:
+    data-component: accordion
+  content:
+    - element: div
+      content:
+        - element: button
+          attributes:
+            data-event: click.toggle
+            data-target: trigger
+            type: button
+          styles:
+            background: #ccc
+            :focus:
+              outline: 1px solid darkgrey
+            :hover:
+              background: #eee
+              target-icon:
+                fill: blue
+          content:
+            - element: svg
+              attributes:
+                aria-hidden: true
+                data-target: icon
+                height: 24
+                viewBox: 0 0 24 24
+                width: 24
+                xmlns: http://www.w3.org/2000/svg
+              styles:
+                fill: grey
+                height: 24
+                width: 24
+                :hover:
+                  fill: darkgrey
+                state-expanded:
+                  transform: rotate(180deg)
+              content:
+                - element: path
+                  attributes:
+                    d: M10 8v8l6-4-6-4z
+        - element: span
+          attributes:
+            class: visually-hidden
+          content:
+            - Expand
+        - element: div
+          attributes:
+            data-target: header
+          slot: header
+    - element: div
+      attributes:
+        data-target: content
+        state-collapsed:
+          aria-hidden: true
+          hidden: true
+      slot: content
+states:
+  initial: collapsed
+  collapsed:
+    state:
+      - transition: [toggle, expanded]
+  expanded:
+    state:
+      - transition: [toggle, collapsed]

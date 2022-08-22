@@ -1,0 +1,12 @@
+id: link
+props:
+  href:
+    - string
+    - /
+template:
+  - element: a
+    attributes:
+      data-component: link
+      href: ${props.href}
+    content:
+      - slot: content

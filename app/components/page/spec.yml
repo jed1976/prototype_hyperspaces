@@ -1,0 +1,51 @@
+id: page
+props:
+  description:
+    - string
+    - Page description
+  title:
+    - string
+    - Page title
+  url:
+    - string
+    - /
+template:
+  - <!doctype html>
+  - element: html
+    attributes:
+      data-controller: page
+      lang: ${project.language}
+    content:
+      - element: head
+        content:
+          - element: meta
+            attributes:
+              charset: utf-8
+          - element: meta
+            attributes:
+              content: width=device-width, initial-scale=1.0
+              name: viewport
+          - element: style
+            attributes:
+              id: style-resets
+            content: >
+              html { box-sizing: border-box; }
+              body { margin: 0; min-height: 100vh; }
+              *, *::after, *::before { box-sizing: inherit; }
+              [hidden] { visibility: hidden !important; }
+          - element: link
+            attributes:
+              href: ${props.url}
+              rel: canonical
+          - element: meta
+            attributes:
+              content: ${props.description}
+              data-target: page.description
+              name: description
+          - element: title
+            attributes:
+              data-target: page.title
+            content:
+              - ${props.title}
+      - element: body
+        slot: content

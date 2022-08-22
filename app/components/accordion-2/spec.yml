@@ -1,0 +1,65 @@
+id: accordion-2
+template:
+  - component: stack
+    styles:
+      max-width: 56rem
+    content:
+      - element: div
+        style:
+          border-radius: 0.25rem
+        content:
+          - element: h2
+            content:
+              - element: button
+                attributes:
+                  data-event: click.toggle
+                  data-target: toggle
+                styles:
+                  background-color: hsl(60, 4%, 16%)
+                  border-radius: 0.25rem
+                  font-weight: 800
+                  color: hsl(60, 4%, 84%)
+                  height: 100%
+                  padding: 2rem
+                  transition: 300ms ease-in-out background-color
+                  width: 100%
+                  :hover:
+                    background-color: hsl(60, 4%, 20%)
+                  :focus:
+                    background-color: hsl(60, 4%, 20%)
+                  state-expanded:
+                    background-color: hsl(17, 97%, 64%)
+                    :hover:
+                      background-color: hsl(17, 97%, 60%)
+                      target-icon:
+                        fill: hsl(60, 4%, 88%)
+                    :focus:
+                      background-color: hsl(17, 97%, 60%)
+                content:
+                  - component: sidebar
+                    content:
+                      - Nulla imperdiet sit amet
+                      - component: icon
+                        styles:
+                          fill: hsl(17, 97%, 50%)
+                          state-expanded:
+                            fill: hsl(60, 4%, 84%)
+          - element: div
+            attributes:
+              data-target: panel
+              hidden: true
+              state-expanded:
+                hidden: false
+            slot: panel
+            styles:
+              background-color: hsl(60, 4%, 12%)
+              padding: 1rem 2rem
+states:
+  initial: collapsed
+  collapsed:
+    state:
+      - transition: [toggle, expanded]
+  expanded:
+    state:
+      - transition: [toggle, collapsed]
+

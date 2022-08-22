@@ -1,0 +1,10 @@
+component: page
+props:
+  description: Editor page
+  title: Editor
+  url: /editor
+slots:
+  content:
+    component: treegrid
+    props:
+      label: Elements
